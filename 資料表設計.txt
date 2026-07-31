@@ -1,0 +1,140 @@
+使用者與企業需求描述(商品採購)盛立
+白沙網路書城系統之商品採購部分需求描述如下：
+1.採購部向出版商採購商品後，需更新採購商品庫存數量，以及新增需上架之新商品資訊。
+
+
+商品採購UI裡面要放採購紀錄(日期、商品名稱、資訊...)
+
+main{
+  讀取輸入的資訊
+  if(比對資料庫中的名稱，若是沒有該資訊時){
+   新增相關資訊,輸出"新商品新增成功"}
+}
+  else{
+       增加庫存數量
+       輸出"庫存數量更新"
+}
+
+dbgrid:商品採購紀錄
+
+新增:
+procedure TFrmBE2.Button1Click(Sender: TObject);
+var INT: Integer;
+begin
+     if TryStrToInt(EditEID.Text, INT) then
+      with Frm000.SQLQueryEmployee do
+        begin
+        //if not Frmoo0.sQuqueryEmployee.Locate('員工編號',EditEID.Text,[loPartialkey]) then
+        if not Locate('員工編號',EditEID.Text,[loPartialkey]) then
+        begin
+        Append;
+        fieldbyName('員工編號').asinteger:=strToint(EditEID.text);
+        fieldbyName('姓名').asstring:=EditName.text;
+        //fieldbyName('密碼').asstring:=EditPassword.text;
+        fieldbyName('名').asstring:=EditNameEn.text;
+        post;
+        applyupdates;
+        //必須加入此行
+
+        Frm000.SQLTransactionEmployee.CommitRetaining;
+        refresh;
+        showmessage('資料已經正確新增');
+
+        end
+        else
+            showmessage('資料新增時敬生錯誤,原因:員工編號重複');
+             //這邊要將商品數量加到庫存上面:
+             
+        end//with Fr000.ADOTableEmployee do
+      else
+        showmessage('項目不得為空白');
+      Frm000.SQLQueryEmployee.Locate('員工編號',EditEID.Text,[loPartialkey]);
+
+end;   
+用作系統的程式碼:
+procedure Tfrme01.Button1Click(Sender: TObject);
+var INT: Integer;
+begin
+     if TryStrToInt(EditName.Text, INT) then
+     with SQLQuery1 do
+  begin
+       if not Locate('商品名稱',EditName.Text,[loPartialkey]) then
+
+        begin
+        Append;
+        fieldbyName('採購編號').asstring:='SRT9980';
+        fieldbyName('商品名稱').asstring:=EditName.text;
+        fieldbyName('採購日期').asstring:=EditDate.text;
+        fieldbyName('出版商').asstring:=EditRelease.text;
+        fieldbyName('數量').asinteger:=strToint(EditNumber.text);
+        fieldbyName('單價').asinteger:=strToint(EditPrice.text);
+        post;
+        applyupdates;
+
+
+        SQLTransaction1.CommitRetaining;
+        refresh;
+        showmessage('新商品新增成功');
+        end
+       else
+        fieldbyName('數量').asstring:=EditNumber.text;
+        showmessage('庫存數量更新');
+  end
+     else
+      showmessage('項目不得為空白');
+      SQLQuery1.Locate('商品名稱',EditName.Text,[loPartialkey]);
+end;                                              
+
+參考:
+procedure TFrmBE2.DBGrid1CellClick(Column: TColumn);
+begin
+     EditName.text:=Frm000.SQLQueryEmployee.fieldbyName('員工編號').value;
+  if Frm000.SQLQueryEmployee.fieldbyName('姓名').IsNull then
+    EditName.text:=''
+    else
+    EditName.text:=Frm000.SQLQueryEmployee.fieldbyName('姓名').value;
+
+
+  if Frm000.SQLQueryEmployee.fieldbyName('名').IsNull then
+    EditNameEN.text:=''
+    else
+    EditNameEN.text:=Frm000.SQLQueryEmployee.fieldbyName('名').value;
+end;                                                                   
+
+用作系統的程式碼:
+
+procedure TFrmBE2.DBGrid1CellClick(Column: TColumn);
+begin
+     EditName.text:=FormDashboard.SQLQuery1.fieldbyName('商品名稱').value;
+
+  if FormDashboard.SQLQuery1.fieldbyName('採購日期').IsNull then
+    EditDate.text:=''
+    else
+    EditDate.text:=FormDashboard.SQLQuery1.fieldbyName('採購日期').value;
+
+
+   if FormDashboard.SQLQuery1.fieldbyName('出版社').IsNull then
+    EditRelease.text:=''
+    else
+    EditRelease.text:=FormDashboard.SQLQuery1.fieldbyName('出版社').value;
+
+   if FormDashboard.SQLQuery1.fieldbyName('數量').IsNull then
+    EditNumber.text:=''
+    else
+    EditNumber.text:=FormDashboard.SQLQuery1.fieldbyName('數量').value;
+
+
+   if FormDashboard.SQLQuery1.fieldbyName('單價').IsNull then
+    EditPrice.text:=''
+    else
+    EditPrice.text:=FormDashboard.SQLQuery1.fieldbyName('單價').value;
+end;           
+
+
+
+
+
+
+
+
+           

@@ -1,0 +1,96 @@
+object FormDashboard: TFormDashboard
+  Left = 694
+  Height = 588
+  Top = 483
+  Width = 1022
+  Caption = '白沙網絡書城系統'
+  Color = 14276285
+  DesignTimePPI = 144
+  Menu = MainMenu1
+  OnActivate = FormActivate
+  LCLVersion = '2.2.4.0'
+  object MainMenu1: TMainMenu
+    Left = 922
+    Top = 19
+    object A0: TMenuItem
+      Caption = '系統(A)'
+      object A01: TMenuItem
+        Caption = '登入(A01)'
+        OnClick = A01Click
+      end
+      object A02: TMenuItem
+        Caption = '登出(A02)'
+        OnClick = A02Click
+      end
+    end
+    object B0: TMenuItem
+      Caption = '顧客管理(B)'
+      object B01: TMenuItem
+        Caption = '顧客資料查詢(B01)'
+        OnClick = B01Click
+      end
+      object B02: TMenuItem
+        Caption = '顧客資料修改(B02)'
+        OnClick = B02Click
+      end
+    end
+    object C0: TMenuItem
+      Caption = '商品管理(C)'
+      object C01: TMenuItem
+        Caption = '商品資料查詢(C01)'
+      end
+      object C02: TMenuItem
+        Caption = '商品資料修改(C02)'
+      end
+    end
+    object MenuItem1: TMenuItem
+      Caption = '銷售管理(D)'
+      object D01: TMenuItem
+        Caption = '訂單處理(D01)'
+      end
+      object D02: TMenuItem
+        Caption = '銷退處理(D02)'
+      end
+    end
+    object E0: TMenuItem
+      Caption = '採購管理(E)'
+      object E01: TMenuItem
+        Caption = '商品采購(E01)'
+        Visible = False
+        OnClick = E01Click
+      end
+      object E02: TMenuItem
+        Caption = '應對付款管理(E02)'
+        Visible = False
+        OnClick = E02Click
+      end
+    end
+    object F0: TMenuItem
+      Caption = '員工管理(F)'
+      object F1: TMenuItem
+        Caption = '員工資料查詢(F1)'
+      end
+      object F2: TMenuItem
+        Caption = '員工資料修改(F2)'
+      end
+    end
+  end
+  object sqlConnector: TSQLConnector
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'bookstore'
+    KeepConnection = True
+    Password = '123'
+    Transaction = sqlTransaction
+    HostName = 'LAPTOP-LT1DLOGR\SQLEXPRESS'
+    ConnectorType = 'MSSQLServer'
+    Left = 48
+    Top = 19
+  end
+  object sqlTransaction: TSQLTransaction
+    Active = True
+    Database = sqlConnector
+    Left = 230
+    Top = 19
+  end
+end

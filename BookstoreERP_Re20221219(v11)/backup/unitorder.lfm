@@ -1,0 +1,105 @@
+object formOrder: TformOrder
+  Left = 405
+  Height = 605
+  Top = 205
+  Width = 1181
+  Caption = '商品采購'
+  ClientHeight = 605
+  ClientWidth = 1181
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  LCLVersion = '2.2.4.0'
+  object gridOrder: TDBGrid
+    Left = 21
+    Height = 480
+    Top = 70
+    Width = 1139
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = dataSource
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgAutoSizeColumns]
+    TabOrder = 0
+  end
+  object btnNew: TButton
+    Left = 21
+    Height = 31
+    Top = 20
+    Width = 94
+    Caption = '創造'
+    TabOrder = 1
+  end
+  object btnEdit: TButton
+    Left = 130
+    Height = 31
+    Top = 20
+    Width = 94
+    Caption = '編輯'
+    TabOrder = 2
+  end
+  object btnView: TButton
+    Left = 240
+    Height = 31
+    Top = 20
+    Width = 94
+    Caption = '看法'
+    TabOrder = 3
+  end
+  object queryOrder: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    MaxIndexesCount = 4
+    FieldDefs = <    
+      item
+        Name = '商品名稱'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = '採購日期'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = '出版商'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = '數量'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = '單價'
+        DataType = ftCurrency
+        Precision = -1
+      end    
+      item
+        Name = '應付賬款狀態'
+        DataType = ftString
+        Precision = -1
+        Size = 255
+      end    
+      item
+        Name = '總價'
+        DataType = ftCurrency
+        Precision = -1
+      end>
+    Database = FormDashboard.sqlConnector
+    Transaction = FormDashboard.sqlTransaction
+    SQL.Strings = (
+      'select * from 訂單管理'
+    )
+    Params = <>
+    Macros = <>
+    Left = 672
+    Top = 8
+  end
+  object dataSource: TDataSource
+    DataSet = queryOrder
+    Left = 760
+    Top = 8
+  end
+end

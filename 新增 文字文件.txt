@@ -1,0 +1,71 @@
+ALTER PROCEDURE [dbo].[sp_Login]
+--Add the parameters for the stored procedure here
+@EID nvarchar(255)='',
+@Password nvarchar(255)='',
+@Name nvarchar(255)=''output,
+@Degree nvarchar(255)=''output,
+@LoginResult nvarchar(255)=''output
+
+AS
+BEGIN
+--SET NOCOUNT ON added to prevent extra result sets from
+--interfering with SELECT statements.
+SET NOCOUNT ON;
+
+   --Insert statements for procedure here
+--帳密正確，回傳 姓名,職稱
+  update 員工
+     set @Name=姓名,@Degree=職稱,@LoginResult='登入成功',次數=0
+where 員工編號=@EID and 密碼=@Password
+
+--帳正確，密錯誤，回傳 姓名，職稱
+if @LoginResult = ''begin
+   update 員工
+   --set 次數=iif(次數 is null,0,次數+1),@Name=姓名,@Degree=職稱,@LoginResult='登入失敗次數: '+convert(varchar(10),iif(次數 is null,0,次數)+1)
+    set 次數=次數+1,@Name=姓名,@Degree=職稱,@LoginResult='登入失敗次數: '+convert(varchar(10),次數+1)
+    where 員工編號=@EID
+  end
+
+
+--帳錯誤
+if @LoginResult =''
+  set @LoginResult='帳號(員工編號)不存在'
+
+--新增至 登入紀錄
+  insert 登入紀錄 values(@EID,getdate(),@Password,@LoginResult)
+
+
+  END
+
+ALTER PROCEDURE [dbo].[sp_修改員工營業額_參數]
+  -Add the parameters for the stored procedure here
+  @year smallint = '',
+  @更新筆數 int=0 output
+
+
+AS
+BEGIN
+ --SET NOCOUNT ON added to prevent extra result sets from
+ --interfering with SELECT statements.
+   SET NPCOUNT ON;
+--先將 營業=0, 年終獎金=0
+ update 員工
+set 營業額=0, 年終獎金=0
+--@year=''，則計算現在日期的前一年，例如:2021/5/11，計算2020年
+  if @year =''begin
+  set @year = year(getdate())-1
+   select @year as 'year'
+end
+
+update 員工
+set 營業額=vw_員工營業額,營業額, 年終獎金=vw 員工營業額,營業額*0.01
+  from 員工 INER JOIN
+(SElECT 訂貨主檔,員工編號,ROUND(SUM(訂貨明細,單價*訂貨明細,數量)*(1-訂貨明細.折扣),0) AS 營業額
+FROM 訂貨主檔 INER JOIN 訂貨明細 ON 訂貨主檔.訂單號碼 = 訂貨明細.訂單號碼
+where year(訂貨主檔.訂單日期)= @year
+GROUP BY 訂貨主檔.員工編號) vw_員工營業額
+ON 員工.員工編號 = vw 員工營業額.員工編號
+
+set @更新筆數 = @@ROWCOUNT
+END
+  

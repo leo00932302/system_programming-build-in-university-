@@ -1,0 +1,134 @@
+object FormProductSearch: TFormProductSearch
+  Left = 363
+  Height = 500
+  Top = 308
+  Width = 1038
+  Caption = '顧客資料查詢(B01)'
+  ClientHeight = 500
+  ClientWidth = 1038
+  DesignTimePPI = 144
+  FormStyle = fsMDIChild
+  OnClose = FormClose
+  LCLVersion = '2.2.4.0'
+  WindowState = wsMaximized
+  object DBGrid1: TDBGrid
+    Left = 40
+    Height = 286
+    Top = 32
+    Width = 616
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 832
+    Height = 38
+    Top = 168
+    Width = 113
+    Caption = '編號查詢'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Edit1: TEdit
+    Left = 825
+    Height = 31
+    Top = 104
+    Width = 120
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    Left = 673
+    Height = 23
+    Top = 104
+    Width = 116
+    Caption = '編號/姓名查詢'
+    ParentColor = False
+  end
+  object Button2: TButton
+    Left = 832
+    Height = 38
+    Top = 248
+    Width = 113
+    Caption = '姓名查詢'
+    OnClick = Button2Click
+    TabOrder = 3
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    MaxIndexesCount = 4
+    FieldDefs = <    
+      item
+        Name = '顧客編號'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = '顧客名稱'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = '生日'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = '電話'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = '地址'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'Email'
+        DataType = ftString
+        Precision = -1
+        Size = 50
+      end    
+      item
+        Name = '密碼'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end>
+    Active = True
+    Database = MSSQLConnection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from 顧客資料'
+    )
+    Params = <>
+    Macros = <>
+    Left = 192
+    Top = 344
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Database = MSSQLConnection1
+    Left = 344
+    Top = 344
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    Left = 504
+    Top = 344
+  end
+  object MSSQLConnection1: TMSSQLConnection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'bookstore'
+    KeepConnection = True
+    Transaction = SQLTransaction1
+    HostName = 'LAPTOP-LT1DLOGR\SQLEXPRESS'
+    Left = 80
+    Top = 344
+  end
+end

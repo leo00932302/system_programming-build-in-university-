@@ -1,0 +1,83 @@
+object formLogin: TformLogin
+  Left = 556
+  Height = 429
+  Top = 346
+  Width = 771
+  Caption = '登入(A01)'
+  ClientHeight = 429
+  ClientWidth = 771
+  Color = 14276285
+  DesignTimePPI = 120
+  OnActivate = FormActivate
+  LCLVersion = '2.2.4.0'
+  object GroupBox1: TGroupBox
+    Left = 45
+    Height = 270
+    Top = 120
+    Width = 685
+    Caption = '登入'
+    ClientHeight = 246
+    ClientWidth = 681
+    TabOrder = 0
+    object txtUsername: TLabeledEdit
+      Left = 55
+      Height = 27
+      Top = 40
+      Width = 495
+      EditLabel.Height = 19
+      EditLabel.Width = 495
+      EditLabel.Caption = '用戶名'
+      EditLabel.ParentColor = False
+      TabOrder = 0
+    end
+    object txtPassword: TLabeledEdit
+      Left = 55
+      Height = 27
+      Top = 110
+      Width = 495
+      EchoMode = emPassword
+      EditLabel.Height = 19
+      EditLabel.Width = 495
+      EditLabel.Caption = '密碼'
+      EditLabel.ParentColor = False
+      PasswordChar = '*'
+      TabOrder = 1
+    end
+    object btnLogin: TButton
+      Left = 210
+      Height = 31
+      Top = 160
+      Width = 134
+      Caption = '登錄'
+      OnClick = btnLoginClick
+      TabOrder = 2
+    end
+  end
+  object lbBookStoreName: TStaticText
+    Left = 184
+    Height = 58
+    Top = 60
+    Width = 353
+    Caption = '白沙網路書城系統'
+    Color = 16744448
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -37
+    Font.Name = 'KaiTi'
+    Font.Pitch = fpFixed
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentColor = False
+    TabOrder = 1
+  end
+  object sqlQuery: TSQLQuery
+    FieldDefs = <>
+    Database = FormDashboard.sqlConnector
+    Transaction = FormDashboard.sqlTransaction
+    Params = <>
+    Macros = <>
+    Left = 32
+    Top = 16
+  end
+end

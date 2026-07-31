@@ -1,0 +1,340 @@
+object FormProductRevise: TFormProductRevise
+  Left = 587
+  Height = 961
+  Top = 156
+  Width = 956
+  Caption = '顧客資料修改(B02)'
+  ClientHeight = 961
+  ClientWidth = 956
+  DesignTimePPI = 144
+  OnClose = FormClose
+  LCLVersion = '2.2.4.0'
+  object DBGrid1: TDBGrid
+    Left = 432
+    Height = 576
+    Top = 112
+    Width = 736
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    TabOrder = 0
+    OnCellClick = DBGrid1CellClick
+  end
+  object Button1: TButton
+    Left = 104
+    Height = 38
+    Top = 632
+    Width = 113
+    Caption = '新增'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 104
+    Height = 38
+    Top = 712
+    Width = 113
+    Caption = '刪除'
+    OnClick = Button2Click
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 104
+    Height = 38
+    Top = 784
+    Width = 113
+    Caption = '修改'
+    OnClick = Button3Click
+    TabOrder = 3
+  end
+  object Label1: TLabel
+    Left = 48
+    Height = 23
+    Top = 8
+    Width = 72
+    Caption = '顧客資料'
+    ParentColor = False
+    ParentShowHint = False
+  end
+  object Label2: TLabel
+    Left = 48
+    Height = 23
+    Top = 120
+    Width = 72
+    Caption = '顧客編號'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 48
+    Height = 23
+    Top = 192
+    Width = 72
+    Caption = '顧客名稱'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 48
+    Height = 23
+    Top = 264
+    Width = 36
+    Caption = '生日'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 48
+    Height = 23
+    Top = 336
+    Width = 36
+    Caption = '電話'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 48
+    Height = 23
+    Top = 408
+    Width = 36
+    Caption = '地址'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 48
+    Height = 23
+    Top = 480
+    Width = 47
+    Caption = 'Email'
+    ParentColor = False
+  end
+  object Label8: TLabel
+    Left = 48
+    Height = 23
+    Top = 544
+    Width = 36
+    Caption = '密碼'
+    ParentColor = False
+  end
+  object EditEID: TEdit
+    Left = 176
+    Height = 31
+    Top = 112
+    Width = 120
+    TabOrder = 4
+  end
+  object EditName: TEdit
+    Left = 176
+    Height = 31
+    Top = 184
+    Width = 120
+    TabOrder = 5
+  end
+  object EditBirth: TEdit
+    Left = 176
+    Height = 31
+    Top = 256
+    Width = 120
+    OnClick = EditBirthClick
+    ReadOnly = True
+    TabOrder = 6
+  end
+  object EditTel: TEdit
+    Left = 176
+    Height = 31
+    Top = 328
+    Width = 120
+    TabOrder = 7
+  end
+  object EditAddress: TEdit
+    Left = 176
+    Height = 31
+    Top = 408
+    Width = 248
+    TabOrder = 8
+  end
+  object EditEmail: TEdit
+    Left = 176
+    Height = 31
+    Top = 480
+    Width = 120
+    TabOrder = 9
+  end
+  object EditPassword: TEdit
+    Left = 176
+    Height = 31
+    Top = 536
+    Width = 120
+    TabOrder = 10
+  end
+  object DateTimePicker1: TDateTimePicker
+    Left = 296
+    Height = 31
+    Top = 256
+    Width = 130
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    TabOrder = 11
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    Kind = dtkDate
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmComboBox
+    Date = 44922
+    Time = 0.627036377314653
+    UseDefaultSeparators = True
+    HideDateTimeParts = []
+    MonthNames = 'Long'
+    OnClick = DateTimePicker1Click
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    Left = 448
+    Top = 800
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    MaxIndexesCount = 4
+    FieldDefs = <    
+      item
+        Name = '顧客編號'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = '顧客名稱'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = '生日'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = '電話'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = '地址'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'Email'
+        DataType = ftString
+        Precision = -1
+        Size = 50
+      end    
+      item
+        Name = '密碼'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end>
+    Active = True
+    Database = MSSQLConnection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from 顧客資料'
+      ''
+    )
+    Params = <>
+    Macros = <>
+    Left = 760
+    Top = 800
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Database = MSSQLConnection1
+    Left = 584
+    Top = 800
+  end
+  object MSSQLConnection1: TMSSQLConnection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'bookstore'
+    KeepConnection = True
+    Transaction = SQLTransaction1
+    HostName = 'LAPTOP-LT1DLOGR\SQLEXPRESS'
+    Left = 288
+    Top = 800
+  end
+  object SQLTransaction2: TSQLTransaction
+    Active = True
+    Database = MSSQLConnection2
+    Left = 584
+    Top = 720
+  end
+  object MSSQLConnection2: TMSSQLConnection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'bookstore'
+    KeepConnection = True
+    Transaction = SQLTransaction2
+    HostName = 'LAPTOP-LT1DLOGR\SQLEXPRESS'
+    Left = 288
+    Top = 728
+  end
+  object SQLQuery2: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    MaxIndexesCount = 4
+    FieldDefs = <    
+      item
+        Name = '顧客編號'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = '顧客名稱'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = '生日'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = '電話'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = '地址'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'Email'
+        DataType = ftString
+        Precision = -1
+        Size = 50
+      end    
+      item
+        Name = '密碼'
+        DataType = ftString
+        Precision = -1
+        Size = 15
+      end>
+    Active = True
+    Database = MSSQLConnection2
+    Transaction = SQLTransaction2
+    SQL.Strings = (
+      'select * from 顧客資料'
+      ''
+    )
+    Params = <>
+    Macros = <>
+    Left = 760
+    Top = 720
+  end
+end

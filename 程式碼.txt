@@ -1,0 +1,20 @@
+訂單日期
+送貨日期
+要貨日期
+
+
+var
+   FrmCO2: TFrmCO2;
+   E:TEdit;
+
+procedure TrmCO2.DataTimePicker1DB1Click(Sender: TObject);
+begin
+  E.Text :=DateTostr(DateTimePicker1.date);
+  DateTimePicker1.Visible:=False;
+end;
+
+procedure TrmCO2.EditOrderDateClick(Sender: TObject);
+begin
+ DateTimePicker1.Visible :=not DateTimePicker1.Visible;
+E:=(Sender as TEdit);
+end;  //三個order用同一個城市馬
