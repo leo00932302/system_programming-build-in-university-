@@ -1,20 +1,12 @@
 # system_programming-build-in-university-
 大學上課時完成，用pascal,lazarus完成，日後可以用qt改寫
 主要可以展示系統設計成果
-
-當然可以，而且我建議**不要直接把 179 頁報告放到 GitHub**。
-
-GitHub 的 README 應該像作品集（Portfolio），讓面試官或教授在 **30 秒內知道你做了什麼、用了哪些技術、你負責哪些部分**。
-
-根據你的專題報告，這是一套**白沙網路書城管理系統**，主要包含登入權限、顧客管理、商品管理、訂單、採購、退貨、員工管理等模組，並完成需求分析、DFD、ERD、介面設計等系統分析文件。
-
-我會建議 README 長這樣：
-
+這是一套**白沙網路書城管理系統**，主要包含登入權限、顧客管理、商品管理、訂單、採購、退貨、員工管理等模組，並完成需求分析、DFD、ERD、介面設計等系統分析文件。
 ---
 
 # 白沙網路書城管理系統 (Bookstore Management System)
 
-> 大學資訊管理系畢業專題
+> 大學資訊管理系專題
 
 ## 專案介紹
 
@@ -212,37 +204,6 @@ Tools
 採購管理
 
 員工管理
-```
-
-建議把畫面放在
-
-```
-images/
-```
-
-例如
-
-```
-images/login.png
-images/customer.png
-images/product.png
-images/order.png
-```
-
-README 中引用：
-
-```markdown
-## Login
-
-![](images/login.png)
-
-## Customer
-
-![](images/customer.png)
-
-## Order
-
-![](images/order.png)
 ```
 
 ---
